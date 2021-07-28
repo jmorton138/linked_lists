@@ -16,18 +16,12 @@ class LinkedList
             #set head to new node
             self.head = new_node
         end
-    
- 
-        # #new node points to nil. Maybe reduntant because default is nil.
-        # new_node.next_node = nil
-        # #previous last node points to new node
-        # prev.next_node = new_node
     end
+
     def append(value)
         new_node = Node.new(value)
         #traverse list until nil
         node = self.head
-        puts node.value 
         while node.next_node != nil
             node = node.next_node
         end
@@ -48,6 +42,19 @@ class LinkedList
         p node.next_node
     end
 
+    def size
+        #traverse list until nil with counter each time
+        node = self.head
+        puts node.value 
+        counter = 1
+        while node.next_node != nil
+            node = node.next_node
+            counter += 1
+        end
+        p counter
+    end
+
+
 end
 
 class Node
@@ -66,8 +73,7 @@ end
 # list.prepend("new")
 # list.prepend("darren")
 # list.prepend("steve")
-# list.traverse
 # puts "------"
 # list.append("joe")
-# list.traverse
+# list.size
 
