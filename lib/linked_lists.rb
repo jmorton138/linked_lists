@@ -105,6 +105,18 @@ class LinkedList
         end
         nil
     end
+
+    def to_s
+        string = ""
+        node = self.head
+        while node != nil
+            string << "( #{node.value} ) --> "
+            node = node.next_node
+        end
+        string << " nil "
+
+    end
+
  
     #head method prints whole linked list because each object is nested in the next_node instance
 
@@ -122,12 +134,12 @@ end
 
 
 
-list = LinkedList.new()
-list.prepend("new")
-list.prepend("darren")
-list.prepend("steve")
-puts "------"
-list.append("joe")
-p list.find("steve")
+# list = LinkedList.new()
+# list.prepend("new")
+# list.prepend("darren")
+# list.prepend("steve")
+# puts "------"
+# list.append("joe")
+# p list.to_s
 
 
