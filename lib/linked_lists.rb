@@ -74,6 +74,37 @@ class LinkedList
         p counter
     end
 
+    def pop
+        node = self.head
+        while node.next_node.next_node != nil
+            node = node.next_node
+        end
+        node.next_node = nil
+    end
+
+    def contains?(value)
+        node = self.head
+        while node != nil
+            if node.value == value
+                return true
+            end
+            node = node.next_node
+        end
+        false
+    end
+
+    def find(value)
+        node = self.head
+        counter = 1
+        while node != nil
+            if node.value == value
+                return counter
+            end
+            node = node.next_node
+            counter += 1
+        end
+        nil
+    end
  
     #head method prints whole linked list because each object is nested in the next_node instance
 
@@ -97,6 +128,6 @@ list.prepend("darren")
 list.prepend("steve")
 puts "------"
 list.append("joe")
-list.traverse
-p list.at(4)
+p list.find("steve")
+
 
