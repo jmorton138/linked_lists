@@ -30,6 +30,26 @@ class LinkedList
 
     end
 
+    def tail
+        node = self.head
+        while node.next_node != nil
+            node = node.next_node
+        end
+        node
+    end
+
+    def at(index)
+        counter = 0
+        node = self.head
+        while node != nil
+            if index == counter
+                return node.value
+            end
+            node = node.next_node
+            counter +=1
+        end
+    end
+
 
     def traverse
         #traverse list until nil
@@ -39,7 +59,7 @@ class LinkedList
             node = node.next_node
             puts node.value
         end
-        p node.next_node
+
     end
 
     def size
@@ -54,6 +74,8 @@ class LinkedList
         p counter
     end
 
+ 
+    #head method prints whole linked list because each object is nested in the next_node instance
 
 end
 
@@ -69,11 +91,12 @@ end
 
 
 
-# list = LinkedList.new()
-# list.prepend("new")
-# list.prepend("darren")
-# list.prepend("steve")
-# puts "------"
-# list.append("joe")
-# list.size
+list = LinkedList.new()
+list.prepend("new")
+list.prepend("darren")
+list.prepend("steve")
+puts "------"
+list.append("joe")
+list.traverse
+p list.at(4)
 
