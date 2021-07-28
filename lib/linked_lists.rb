@@ -113,9 +113,51 @@ class LinkedList
             string << "( #{node.value} ) --> "
             node = node.next_node
         end
-        string << " nil "
+        string << " nil"
 
     end
+
+    def insert_at(value, index)
+        new_node = Node.new(value)
+        counter = 0
+        node = self.head
+        if index == 0
+            prepend(value)
+            return
+        end
+        while node != nil
+            prev_node = node      
+            counter +=1
+            node = node.next_node
+            if index == counter
+                new_node.next_node = node
+                prev_node.next_node = new_node
+                return
+            end
+        end
+    end
+
+    def remove_at(index)
+        counter = 0
+        node = self.head
+        while node != nil
+            if index == 0
+                self.head = node.next_node
+                return
+            end  
+            prev_node = node    
+            counter +=1
+            node = node.next_node
+            if index == counter
+                #point prev node to 
+                prev_node.next_node = node.next_node
+                node.next_node = nil
+                return
+            end
+        end
+        return "Index out of bounds"
+    end
+
 
  
     #head method prints whole linked list because each object is nested in the next_node instance
@@ -134,12 +176,15 @@ end
 
 
 
-# list = LinkedList.new()
-# list.prepend("new")
-# list.prepend("darren")
-# list.prepend("steve")
-# puts "------"
-# list.append("joe")
-# p list.to_s
+list = LinkedList.new()
+list.prepend("new")
+list.prepend("darren")
+list.prepend("steve")
+puts "------"
+list.append("joe")
+
+list.insert_at("peanut", 3)
+list.remove_at(0)
+p list.to_s
 
 
