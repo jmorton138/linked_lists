@@ -7,6 +7,7 @@ class LinkedList
 
     def prepend(value)
         new_node = Node.new(value)
+
         if self.head.value == nil
             #if list is empty set head to new node
             self.head = new_node
@@ -27,7 +28,6 @@ class LinkedList
         end
         #point previous last node to new node with new node point to nil
         node.next_node = new_node
-
     end
 
     def tail
@@ -48,6 +48,7 @@ class LinkedList
             node = node.next_node
             counter +=1
         end
+        false
     end
 
 
@@ -55,19 +56,17 @@ class LinkedList
         #traverse list until nil
         node = self.head
         puts node.value 
-        while node.next_node != nil
+        while node != nil
             node = node.next_node
             puts node.value
         end
-
     end
 
     def size
         #traverse list until nil with counter each time
         node = self.head
-        puts node.value 
-        counter = 1
-        while node.next_node != nil
+        counter = 0
+        while node != nil
             node = node.next_node
             counter += 1
         end
@@ -95,7 +94,7 @@ class LinkedList
 
     def find(value)
         node = self.head
-        counter = 1
+        counter = 0
         while node != nil
             if node.value == value
                 return counter
@@ -124,16 +123,18 @@ class LinkedList
         if index == 0
             prepend(value)
             return
-        end
-        while node != nil
-            prev_node = node      
-            counter +=1
-            node = node.next_node
-            if index == counter
-                new_node.next_node = node
-                prev_node.next_node = new_node
-                return
+        else
+            while node != nil
+                prev_node = node      
+                counter +=1
+                node = node.next_node
+                if index == counter
+                    new_node.next_node = node
+                    prev_node.next_node = new_node
+                    return
+                end
             end
+            p "Invalid index"
         end
     end
 
@@ -160,7 +161,6 @@ class LinkedList
 
 
  
-    #head method prints whole linked list because each object is nested in the next_node instance
 
 end
 
@@ -175,16 +175,25 @@ class Node
 end
 
 
+#test
+# list = LinkedList.new()
+# list.prepend("new")
+# list.prepend("darren")
+# p list.to_s
+# list.prepend("steve")
+# p list.to_s
+# list.append("joe")
+# list.append("almond")
+# p list.to_s
+# p list.tail
+# list.insert_at("peanut", 3)
+# p list.to_s
+# list.at(4)
+# list.pop
+# list.contains?("joe")
+# list.find("peanut")
+# list.remove_at(3)
 
-list = LinkedList.new()
-list.prepend("new")
-list.prepend("darren")
-list.prepend("steve")
-puts "------"
-list.append("joe")
 
-list.insert_at("peanut", 3)
-list.remove_at(0)
-p list.to_s
 
 
